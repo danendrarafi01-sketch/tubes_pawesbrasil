@@ -12,11 +12,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-    $middleware->validateCsrfTokens(except: [
-        'orders/notification',
-        '/orders/notification',
-    ]);
-})
+        $middleware->validateCsrfTokens(except: [
+            'orders/notification',
+            '/orders/notification',
+            'payment-callback',
+            '/payment-callback',
+        ]);
+    })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();

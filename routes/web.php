@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentCallbackController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -55,6 +56,11 @@ Route::middleware('auth')->group(function () {
     // =====================================
 });
 // ===========================================
+
+// ========== ROUTE PAYMENT CALLBACK (BARU) ==========
+Route::post('/payment-callback', [PaymentCallbackController::class, 'handle'])->name('payment.callback');
+Route::get('/payment-success/manual', [PaymentCallbackController::class, 'manualSuccess'])->name('payment.manual.success');
+// ===================================================
 
 // Profile routes
 Route::middleware('auth')->group(function () {
